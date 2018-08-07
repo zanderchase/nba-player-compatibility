@@ -33,7 +33,7 @@ request.onerror = function() {
 
 request.send();
 
-document.getElementById('locality-dropdown').storeID.onchange = function() {
+dropdown.onchange = function() {
     var newaction = this.value;
     console.log(newaction);
 };
