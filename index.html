@@ -9,7 +9,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js'></script>
     <script src="https://d3js.org/d3-contour.v1.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
+    
     <script src='court.js'></script>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700' rel='stylesheet'>
@@ -17,6 +17,19 @@
     <link rel='stylesheet' href='css/styles.css'>
   </head>
   <body>
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+      <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <a href="#about">About</a>
+        <a href="#base">Base</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+        <a href="#custom">Custom</a>
+        <a href="#support">Support</a>
+        <a href="#tools">Tools</a>
+      </div>
+    </div>
     <style>
 body {
   font-family: 'Open Sans', sans-serif;
