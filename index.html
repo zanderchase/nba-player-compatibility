@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Chasing Insights</title>
-    <h2>NBA Player Comparison</h2>
+    <h2>NBA Player Compariso</h2>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width'>
     <script src='https://d3js.org/d3.v4.min.js'></script>
@@ -48,6 +48,7 @@ body {
     <h2 id='caption'></h2>
     <div id='court'></div>
     <div id='stats'></div>
+    <script src='dropdown.js'></script>
     <script>
         const margin = { left: 20, right: 20, top: 20, bottom: 20 };
         var chartDiv = document.getElementById('court');
@@ -98,8 +99,10 @@ body {
         var CenterInner = court_g.append('path')
 
         draw_court();
-        
+        document.getElementById('locality-dropdown').storeID.onchange = function() {
+            var newaction = this.value;
+            console.log(newaction);
+        };
     </script>
-    <script src='dropdown.js'></script>
   </body>
 </html>
