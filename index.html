@@ -53,7 +53,23 @@
     </head>
     <body>
         <p id="chart"></p>
-        <script type="text/javascript" src="courtvis.js"></script>
+        <script type="text/javascript" src="court.js">
+        var Basket = court_g.append('circle');
+        var Backboard = court_g.append('rect');
+        var Outterbox = court_g.append('rect');
+        var Innerbox = court_g.append('rect');
+        var CornerThreeLeft = court_g.append('rect');
+        var CornerThreeRight = court_g.append('rect');
+        var OuterLine = court_g.append('rect');
+        var RestrictedArea = court_g.append('path')
+        var TopFreeThrow = court_g.append('path')
+        var BottomFreeThrow = court_g.append('path')
+        var ThreeLine = court_g.append('path')
+        var CenterOuter = court_g.append('path')
+        var CenterInner = court_g.append('path')
+        </script>
+        draw_court();
+        
         <h3> Description: </h3>
         <p>
           Abstract about visualization...
