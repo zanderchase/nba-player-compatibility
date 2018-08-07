@@ -20,6 +20,7 @@ request.onload = function() {
       option = document.createElement('option');
       option.text = data[i].name;
       option.value = data[i].abbreviation;
+      option.onchange = action_function();
       dropdown.add(option);
     }
    } else {
@@ -33,7 +34,7 @@ request.onerror = function() {
 
 request.send();
 
-dropdown.onchange = function() {
+action_function = function() {
     var newaction = this.value;
     console.log(newaction);
 };
