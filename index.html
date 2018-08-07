@@ -95,6 +95,15 @@ body {
         var CenterInner = court_g.append('path')
 
         draw_court();
+        
+        d3.select(document.getElementById('chart1'))
+        .append("svg")
+          .chart("BasketballShotChart", {
+            // set svg width
+            width: 600, 
+            // set title
+            title: 'Lebron James 2013-14',
+          })
     </script>
   </body>
 </html>
