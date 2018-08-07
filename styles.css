@@ -9,6 +9,14 @@ body{
   min-height: 100%;
 }
 
+.intro {
+margin: 10px;
+outline: 1px solid #CCC;
+background: #A00;
+color: #FFF;
+height:auto;
+overflow:auto;
+}
 
 /* Dropdown Button */
 .dropbtn {
