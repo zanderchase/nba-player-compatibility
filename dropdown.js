@@ -2,7 +2,7 @@ let dropdown = document.getElementById('locality-dropdown');
 dropdown.length = 0;
 
 let defaultOption = document.createElement('option');
-defaultOption.text = 'Choose State/Province';
+defaultOption.text = 'Choose Player';
 
 dropdown.add(defaultOption);
 dropdown.selectedIndex = 0;
@@ -32,3 +32,8 @@ request.onerror = function() {
 };
 
 request.send();
+
+document.getElementById('locality-dropdown').storeID.onchange = function() {
+    var newaction = this.value;
+    console.log(newaction);
+};
