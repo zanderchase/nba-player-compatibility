@@ -7,7 +7,7 @@ defaultOption.text = 'Choose State/Province';
 dropdown.add(defaultOption);
 dropdown.selectedIndex = 0;
 
-const url = 'https://api.myjson.com/bins/7xq2x';
+const url = 'player_fake.json';
 
 const request = new XMLHttpRequest();
 request.open('GET', url, true);
