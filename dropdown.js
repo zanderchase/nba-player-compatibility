@@ -1,11 +1,15 @@
 let dropdown = document.getElementById('locality-dropdown');
+let dropdown2 = document.getElementById('locality-dropdown2');
 dropdown.length = 0;
+dropdown2.length = 0;
 
 let defaultOption = document.createElement('option');
 defaultOption.text = 'Choose Player';
 
 dropdown.add(defaultOption);
 dropdown.selectedIndex = 0;
+dropdown2.add(defaultOption);
+dropdown2.selectedIndex = 0;
 
 const url = 'player_info.json';
 
@@ -22,6 +26,7 @@ request.onload = function() {
       option.value = data[i].id;
       option.onchange = action_function();
       dropdown.add(option);
+      dropdown2.add(option);
     }
    } else {
     // Reached the server, but it returned an error
