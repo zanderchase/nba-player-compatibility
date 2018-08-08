@@ -4,10 +4,10 @@ dropdown.length = 0;
 dropdown2.length = 0;
 
 let defaultOption = document.createElement('option');
-defaultOption.text = 'Choose Player';
+defaultOption.text = 'Choose Player 1';
 
 let defaultOption2 = document.createElement('option');
-defaultOption2.text = 'Choose Player';
+defaultOption2.text = 'Choose Player 2';
 
 dropdown.add(defaultOption);
 dropdown.selectedIndex = 0;
