@@ -7,7 +7,7 @@ defaultOption.text = 'Choose Player';
 dropdown.add(defaultOption);
 dropdown.selectedIndex = 0;
 
-const url = 'player_fake.json';
+const url = 'player_info.json';
 
 const request = new XMLHttpRequest();
 request.open('GET', url, true);
@@ -19,7 +19,7 @@ request.onload = function() {
     for (let i = 0; i < data.length; i++) {
       option = document.createElement('option');
       option.text = data[i].name;
-      option.value = data[i].abbreviation;
+      option.value = data[i].id;
       option.onchange = action_function();
       dropdown.add(option);
     }
