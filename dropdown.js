@@ -28,13 +28,11 @@ request.onload = function() {
       option = document.createElement('option');
       option.text = data[i].name;
       option.value = data[i].id;
-      option.onchange = action_function();
       dropdown.add(option);
       dropdown2.add(option);
       option2 = document.createElement('option2');
       option2.text = data[i].name;
       option2.value = data[i].id;
-      option2.onchange = action_function();
       dropdown.add(option2);
       dropdown2.add(option2);
     }
