@@ -26,7 +26,7 @@ request.onload = function() {
       newa = document.createElement('a');
       newa.text = data[i].name;
       newa.value = data[i].id;
-      document.body.appendChild(newa, currentDiv);
+      currentDiv.appendChild(newa);
     }
    } else {
     // Reached the server, but it returned an error
