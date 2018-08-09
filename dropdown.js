@@ -1,15 +1,15 @@
 //let dropdown = document.getElementById('locality-dropdown');
 let dropdown = document.getElementById('myDropdown');
-dropdown.length = 0;
+//dropdown.length = 0;
 
-let defaultOption = document.createElement('option');
-defaultOption.text = 'Choose Player 1';
+//let defaultOption = document.createElement('option');
+//defaultOption.text = 'Choose Player 1';
 
 //let defaultOption2 = document.createElement('option');
 //defaultOption2.text = 'Choose Player 2';
 
-dropdown.add(defaultOption);
-dropdown.selectedIndex = 0;
+//dropdown.add(defaultOption);
+//dropdown.selectedIndex = 0;
 //dropdown2.add(defaultOption2);
 //dropdown2.selectedIndex = 0;
 
@@ -23,10 +23,10 @@ request.onload = function() {
     const data = JSON.parse(request.responseText);
     let option;
     for (let i = 0; i < data.length; i++) {
-      option = document.createElement('option');
-      option.text = data[i].name;
-      option.value = data[i].id;
-      dropdown.add(option);
+      a = document.createElement('a');
+      a.text = data[i].name;
+      a.value = data[i].id;
+      dropdown.add(a);
       //dropdown2.add(option);
     }
    } else {
