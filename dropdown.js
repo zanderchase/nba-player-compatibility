@@ -21,14 +21,16 @@ request.onload = function() {
   if (request.status === 200) {
     const data = JSON.parse(request.responseText);
     var currentDiv = document.getElementById("myInput");
-    
+    console.log(data.length);
     for (let i = 0; i < data.length; i++) {
+      console.log(data[i].name);
       newa = document.createElement('a');
       newa.text = data[i].name;
       newa.value = data[i].id;
       currentDiv.appendChild(newa);
     }
    } else {
+     console.log('fail');
     // Reached the server, but it returned an error
   }   
 }
