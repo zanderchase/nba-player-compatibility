@@ -1,5 +1,4 @@
 //let dropdown = document.getElementById('locality-dropdown');
-let dropdown = document.getElementById('myInput');
 //dropdown.length = 0;
 
 //let defaultOption = document.createElement('option');
@@ -21,13 +20,13 @@ request.open('GET', url, true);
 request.onload = function() {
   if (request.status === 200) {
     const data = JSON.parse(request.responseText);
-    let option;
+    var currentDiv = document.getElementById("myInput");
+    
     for (let i = 0; i < data.length; i++) {
-      a = document.createElement('a');
-      a.text = data[i].name;
-      a.value = data[i].id;
-      dropdown.add(a);
-      //dropdown2.add(option);
+      newa = document.createElement('a');
+      newa.text = data[i].name;
+      newa.value = data[i].id;
+      document.body.appendChild(newa, currentDiv);
     }
    } else {
     // Reached the server, but it returned an error
