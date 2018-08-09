@@ -18,6 +18,11 @@ height:auto;
 overflow:auto;
 }
 
+.header a.title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;
