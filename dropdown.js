@@ -1,4 +1,17 @@
-let dropdown = document.getElementById('myDropdown');
+//let dropdown = document.getElementById('locality-dropdown');
+let dropdown = document.getElementById('myInput');
+//dropdown.length = 0;
+
+//let defaultOption = document.createElement('option');
+//defaultOption.text = 'Choose Player 1';
+
+//let defaultOption2 = document.createElement('option');
+//defaultOption2.text = 'Choose Player 2';
+
+//dropdown.add(defaultOption);
+//dropdown.selectedIndex = 0;
+//dropdown2.add(defaultOption2);
+//dropdown2.selectedIndex = 0;
 
 const url = 'player_info.json';
 
@@ -14,6 +27,7 @@ request.onload = function() {
       a.text = data[i].name;
       a.value = data[i].id;
       dropdown.add(a);
+      //dropdown2.add(option);
     }
    } else {
     // Reached the server, but it returned an error
@@ -51,3 +65,4 @@ function filterFunction() {
     }
   }
 }
+
