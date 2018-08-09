@@ -24,7 +24,7 @@ overflow:auto;
 }
 
 /* Dropdown Button */
-.dropbtn {
+.locality-dropdown {
     background-color: #4CAF50;
     color: white;
     padding: 16px;
@@ -34,7 +34,7 @@ overflow:auto;
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+.locality-dropdown:hover, .dropbtn:focus {
     background-color: #3e8e41;
 }
 
