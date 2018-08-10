@@ -25,7 +25,10 @@
     <div style="clear:both"></div>
     <script src='dropdown.js'></script>
     <script type="text/javascript">
-    $(".chosen").chosen();
+      setTimeout(function(){
+        $(".chosen").chosen();
+        console.log('yo');
+      }, 2000);
     </script>
 
   </body>
