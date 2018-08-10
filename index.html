@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="choosen.js"></script>
     <title>Chasing Insights</title>
     <h2>NBA Player Comparison</h2>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width'>
-    <link rel='stylesheet' href='styles.css'>
+    <link rel='stylesheet' href='style.css'>
+    <link rel='stylesheet' href='searchbox.css'>
   </head>
   <body>
-    <h4>Select Player 1:</h4>
-    <select id="locality-dropdown" name="locality" onchange=action_function>
-    </select>
-    <h4>Select Player 2:</h4>
-    <select id="locality-dropdown2" name="locality" onchange=action_function>
-    </select>
-    <h4>Another one:</h4>
-    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-    <div id="myDropdown" class="dropdown-content">
-      <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    <div style="width: 100%;">
+       <div style="float:left; width: 80%">
+         <h3>Player 1:</h3>
+         <select id="locality-dropdown" name="locality" class="chosen" onclick="selectAction" style="width:300px;">
+         </select>
+       </div>
+       <div style="float:right; position: absolute; left: 500px">
+         <h3>Player 2:</h3>
+         <select id="locality-dropdown2" name="locality" class="chosen" style="width:300px;">
+         </select>
+       </div>
     </div>
-    <script src='dropdown.js'></script>
-    
+    <div style="clear:both"></div>
+    <script src='player_dropdown.js'></script>
+    <script type="text/javascript">
+    $(".chosen").chosen();
+    </script>
+
   </body>
 </html>
