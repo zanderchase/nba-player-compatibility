@@ -21,10 +21,11 @@ request.open('GET', url, true);
 request.onload = function() {
   if (request.status === 200) {
     const data = JSON.parse(request.responseText);
-    var currentDiv = document.getElementById("myInput");
-    let option
-    let option2
+    let option;
+    let option2;
+    
     for (let i = 0; i < data.length; i++) {
+      console.log(data[i]);
       option = document.createElement('option');
       option.text = data[i].name;
       option.value = data[i].id;
