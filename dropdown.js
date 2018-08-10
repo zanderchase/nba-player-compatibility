@@ -25,7 +25,6 @@ request.onload = function() {
     let option2;
     
     for (let i = 0; i < data.length; i++) {
-      console.log(data[i]);
       option = document.createElement('option');
       option.text = data[i].name;
       option.value = data[i].id;
