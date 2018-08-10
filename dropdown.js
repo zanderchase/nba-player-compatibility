@@ -29,12 +29,12 @@ request.onload = function() {
       option = document.createElement('option');
       option.text = data[i].name;
       option.value = data[i].id;
-      dropdown.add(option)
+      dropdown.add(option);
       
       option2 = document.createElement('option');
       option2.text = data[i].name;
       option2.value = data[i].id;
-      dropdown2.add(option2)
+      dropdown2.add(option2);
     }
    } else {
      console.log('fail');
