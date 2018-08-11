@@ -5,29 +5,72 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="choosen.js"></script>
     <title>Chasing Insights</title>
-    <h2>NBA Player Comparison</h2>
+    <h2>NBA Player Compatibility</h2>
     <link rel='stylesheet' href='style.css'>
     <link rel='stylesheet' href='searchbox.css'>
   </head>
   <body>
     <div style="width: 100%;">
        <div style="float:left; width: 80%">
-         <h3>Player 1:</h3>
+         <h3>Shooting Player:</h3>
+         <p>Please select the player who is shooting.</p>
          <select id="locality-dropdown" name="locality" class="chosen" style="width:300px;">
          </select>
+         <h4 id='player_1_shoot_header'></h4>
+         <div id='player_1_court_shoot_loc'></div>
+         <h4 id='player_1_shoot_header2'></h4>
+         <div id='player_1_court_shoot_pct'></div>
        </div>
        <div style="float:right; position: absolute; left: 500px">
-         <h3>Player 2:</h3>
+         <h3>Offensive Teammate:</h3>
+         <p>Please select an offensive teammate.</p>
          <select id="locality-dropdown2" name="locality" class="chosen" style="width:300px;">
          </select>
+         <h4 id='player_2_off_header'></h4>
+         <div id='player_2_court_off_loc'></div>
+         <h4 id='player_2_off_header2'></h4>
+         <div id='player_2_court_off_pct'></div>
        </div>
     </div>
     <div style="clear:both"></div>
     <script src='dropdown.js'></script>
+    <script src='get_weights.js'></script>
+    <script src='load_data.js'></script>
+    <script src='court.js'></script>
     <script type="text/javascript">
         setTimeout(function(){
           $(".chosen").chosen();
       }, 0);
+    </script>
+     <script type="text/javascript">
+        const width = 300;
+        const height = width/50*47;
+        const margin = { left: 5, right: 5, top: 5, bottom: 5 };
+        const court_xScale = d3.scaleLinear()
+                                 .domain([-25, 25]);
+        const court_yScale = d3.scaleLinear()
+                                     .domain([-4,43]);
+        const shot_xScale = d3.scaleLinear()
+                                     .domain([-250, 250]);
+        const shot_yScale = d3.scaleLinear()
+                                     .domain([-45,420])
+
+        document.getElementById("locality-dropdown").onchange = function(){
+
+          document.getElementById("player_1_shoot_header").innerHTML = "Shooting Tendencies"
+          draw_court('player_1_court_shoot_loc', get_weights('pct', 'shoot', this.value));
+
+          document.getElementById("player_1_shoot_header2").innerHTML = "Shooting Ability"
+          draw_court('player_1_court_shoot_pct', get_weights('loc', 'shoot', this.value));
+        }
+        document.getElementById("locality-dropdown2").onchange = function(){
+
+          document.getElementById("player_2_off_header").innerHTML = "Effect on Teammates' Shooting Tendencies"
+          draw_court('player_2_court_off_loc', get_weights('pct', 'off', this.value));
+
+          document.getElementById("player_2_off_header2").innerHTML = "Effect on Teammates' Shooting Ability"
+          draw_court('player_2_court_off_pct', get_weights('loc', 'off', this.value));
+        }
     </script>
 
   </body>

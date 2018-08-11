@@ -18,21 +18,24 @@ const url = 'player_info.json';
 const request = new XMLHttpRequest();
 request.open('GET', url, true);
 
+var player_data = {}
+
 request.onload = function() {
   if (request.status === 200) {
-    const data = JSON.parse(request.responseText);
+
+    player_data = JSON.parse(request.responseText);
     let option;
     let option2;
     
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < player_data.length; i++) {
       option = document.createElement('option');
-      option.text = data[i].name;
-      option.value = data[i].id;
+      option.text = player_data[i].name;
+      option.value = player_data[i].id;
       dropdown.add(option);
       
       option2 = document.createElement('option');
-      option2.text = data[i].name;
-      option2.value = data[i].id;
+      option2.text = player_data[i].name;
+      option2.value = player_data[i].id;
       dropdown2.add(option2);
     }
    } else {
@@ -46,11 +49,3 @@ request.onerror = function() {
 };
 
 request.send();
-
-document.getElementById("locality-dropdown").onchange = function(){
-  console.log(this.value);
-}
-
-document.getElementById("locality-dropdown2").onchange = function(){
-  console.log(this.value);
-}
