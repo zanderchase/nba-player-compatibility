@@ -50,8 +50,6 @@ function draw_court(tag, colors){
         .attr('class', 'shot-chart-court-3pt-line')
         .attr("transform", "translate(" + court_xScale(0) + ", " +court_yScale(0) +")");
 
-    console.log(ThreeLine)
-
     var NearBasket = court_g.append('rect');
     var Outterbox = court_g.append('rect');
     var Innerbox = court_g.append('rect');
