@@ -7,7 +7,7 @@
     <script src='get_weights.js'></script>
     <script src='load_data.js'></script>
     <title>Chasing Insights</title>
-    <h2>NBA Player Compatibility</h2>
+    <h2>NBA Player Compatibility (Beta Version)</h2>
     <link rel='stylesheet' href='style.css'>
     <link rel='stylesheet' href='searchbox.css'>
   </head>
@@ -24,7 +24,7 @@
          <div id='player_1_court_shoot_pct'></div>
          <div id='player1_value'></div>
        </div>
-       <div style="float:right; position: absolute; left: 500px">
+       <div style="float:right; position: absolute; left: 50%">
          <h3>Offensive Teammate:</h3>
          <p>Please select an offensive teammate.</p>
          <select id="locality-dropdown2" name="locality" class="chosen" style="width:300px;">
@@ -37,7 +37,7 @@
        </div>
     </div>
     <div style="clear:both"></div>
-    <div style="width: 100%;">
+    <div style="width: 100%; border: 25px solid green;padding: 25px;margin: 25px;">
       <h4 id='synergy'></h4>
     <div id='combined_value'></div>
     </div>
@@ -94,10 +94,11 @@
           shoot_score = score_series(new_series_pct, new_series_loc) - shoot_base_score
           //console.log(score_series(new_series_pct, new_series_loc))
           //shoot_score = score_series(new_series_pct, new_series_loc) - base_score
-          document.getElementById("player1_value").innerHTML = "When shooting, player's estimated points per 100 shots is " + Math.round(shoot_score * 10000) / 100 + " better than the average player's."
+          document.getElementById("player1_value").innerHTML = "When shooting, " + this.options[this.selectedIndex].text + "'s estimated points per 100 shots is " + Math.round(shoot_score * 10000) / 100 + " better than the average player for his position."
 
           if (off_score_guard != -1){
-              var off = document.getElementById("locality-dropdown2").value
+              var this_off = document.getElementById("locality-dropdown2")
+              var off = this_off.value
               new_series_pct = get_new_series(off_pct, off, pct_coefs['off'], new_series_pct)
               new_series_loc = get_new_series(off_loc, off, loc_coefs['off'], new_series_loc)
               new_series_pct = adj_if_both_centers(this.value, off, new_series_pct, pct_coefs['off'])
@@ -107,7 +108,7 @@
               var off_score_to_use = get_off_score_to_use(this.value)
               var synergy = comb_score - shoot_score - off_score_to_use
               document.getElementById("synergy").innerHTML = "Synergy: " + Math.round(synergy * 10000) / 100
-              document.getElementById("combined_value").innerHTML = "When player 1 is shooting with player 2 as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply linearly added their effects linearly."
+              document.getElementById("combined_value").innerHTML = "When " + this.options[this.selectedIndex].text+ " is shooting with " + this_off.options[this_off.selectedIndex].text+ " as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player for his position. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply linearly added their effects linearly."
           }
           
           
@@ -149,10 +150,11 @@
           off_score_center = score_series(new_new_pct_series, new_new_loc_series) - score_series(new_base_pct_series, new_base_loc_series)
           //console.log(score_series(new_series_pct, new_series_loc))
 
-          document.getElementById("player2_value").innerHTML = "When player is on the court, he increases his teammates' points per 100 shots by an estimated " + Math.round(off_score_guard * 10000) / 100 + " for guards, " + Math.round(off_score_forward * 10000) / 100 +  " for forwards, and " + Math.round(off_score_center * 10000) / 100 + " for centers."
+          document.getElementById("player2_value").innerHTML = "When " +this.options[this.selectedIndex].text + " is on the court, he increases his teammates' points per 100 shots by an estimated " + Math.round(off_score_guard * 10000) / 100 + " for guards, " + Math.round(off_score_forward * 10000) / 100 +  " for forwards, and " + Math.round(off_score_center * 10000) / 100 + " for centers."
           
         if (shoot_score != -1){
-              var shooter = document.getElementById("locality-dropdown").value
+              var this_shooter = document.getElementById("locality-dropdown")
+              var shooter = this_shooter.value
               new_series_pct = get_new_series(shoot_pct, shooter, pct_coefs['off'], new_series_pct)
               new_series_loc = get_new_series(shoot_loc, shooter, loc_coefs['off'], new_series_loc)
               new_series_pct = adj_if_both_centers(shooter, this.value, new_series_pct, pct_coefs['off'])
@@ -162,7 +164,7 @@
               var off_score_to_use = get_off_score_to_use(shooter)
               var synergy = comb_score - shoot_score - off_score_to_use
               document.getElementById("synergy").innerHTML = "Synergy: " + Math.round(synergy * 10000) / 100
-              document.getElementById("combined_value").innerHTML = "When player 1 is shooting with player 2 as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply linearly added their effects linearly."
+              document.getElementById("combined_value").innerHTML = "When "+ this_shooter.options[this_shooter.selectedIndex].text+ " is shooting with "+ this.options[this.selectedIndex].text+ " as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player for his position. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply linearly added their effects linearly."
           }
         }
     </script>
