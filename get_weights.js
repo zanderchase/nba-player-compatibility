@@ -179,7 +179,41 @@ function adj_if_both_centers(shooter, off, coefs, base_coefs){
     return coefs
 }
 
+function get_off_score_to_use(shooter){
+    var pos_shooter = pos_map[shooter]
+    if (pos_shooter == 'Guard'){
+        return off_score_guard
+    }
+    else if (pos_shooter == 'Forward'){
+        return off_score_forward
+    }
+    else if (pos_shooter == 'Center'){
+        return off_score_center
+    }
+    else {
+        throw 'Bad position'
+    }
+        
+}
 
+function get_off_base_to_use(pos_shooter){
+    if (pos_shooter == 'Guard'){
+        var player_eg = 202691
+    }
+    else if (pos_shooter == 'Forward'){
+        var player_eg = 2544
+    }
+    else if (pos_shooter == 'Center'){
+        var player_eg = 201599
+    }
+    else {
+        throw 'Bad position'
+    }
+    var new_base_pct_series1 = get_base_shooter(player_eg, pct_coefs, base_series_pct)
+    var new_base_loc_series1 = get_base_shooter(player_eg, loc_coefs, base_series_loc)
+    return new_base_pct_series1, new_base_loc_series1
+        
+}
 
 
 

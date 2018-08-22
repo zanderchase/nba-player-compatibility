@@ -65,11 +65,14 @@
         var base_series_pct = {}
         var base_series_loc = {}
         var shoot_score = -1
-        var off_score = -1
+        var off_score_center = -1
+        var off_score_forward = -1
+        var off_score_guard = -1
         var shoot_pct = {}
         var shoot_loc = {}
         var off_pct = {}
         var off_loc = {}
+        var shoot_base_score = -1
 
         document.getElementById("locality-dropdown").onchange = function(){
           get_base_score()
@@ -87,18 +90,22 @@
           var new_series_loc = get_new_series(shoot_loc, this.value, loc_coefs['off'], base_series_loc)
           var new_base_pct_series = get_base_shooter(this.value, pct_coefs, base_series_pct)
           var new_base_loc_series = get_base_shooter(this.value, loc_coefs, base_series_loc)
-          // shoot_score = score_series(new_series_pct, new_series_loc) - score_series(new_base_pct_series, new_base_loc_series)
-          shoot_score = score_series(new_series_pct, new_series_loc) - base_score
+          shoot_base_score = score_series(new_base_pct_series, new_base_loc_series)
+          shoot_score = score_series(new_series_pct, new_series_loc) - shoot_base_score
+          //console.log(score_series(new_series_pct, new_series_loc))
+          //shoot_score = score_series(new_series_pct, new_series_loc) - base_score
           document.getElementById("player1_value").innerHTML = "When shooting, player's estimated points per 100 shots is " + Math.round(shoot_score * 10000) / 100 + " better than the average player's."
 
-          if (off_score != -1){
+          if (off_score_guard != -1){
               var off = document.getElementById("locality-dropdown2").value
               new_series_pct = get_new_series(off_pct, off, pct_coefs['off'], new_series_pct)
               new_series_loc = get_new_series(off_loc, off, loc_coefs['off'], new_series_loc)
               new_series_pct = adj_if_both_centers(this.value, off, new_series_pct, pct_coefs['off'])
               new_series_loc = adj_if_both_centers(this.value, off, new_series_loc, loc_coefs['off'])
-              var comb_score = score_series(new_series_pct, new_series_loc) - base_score
-              var synergy = comb_score - shoot_score - off_score
+              var comb_score = score_series(new_series_pct, new_series_loc) - shoot_base_score
+              //console.log(score_series(new_series_pct, new_series_loc))
+              var off_score_to_use = get_off_score_to_use(this.value)
+              var synergy = comb_score - shoot_score - off_score_to_use
               document.getElementById("synergy").innerHTML = "Synergy: " + Math.round(synergy * 10000) / 100
               document.getElementById("combined_value").innerHTML = "When player 1 is shooting with player 2 as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply linearly added their effects linearly."
           }
@@ -121,17 +128,39 @@
 
           var new_series_pct = get_new_series(off_pct, this.value, pct_coefs['off'], base_series_pct)
           var new_series_loc = get_new_series(off_loc, this.value, loc_coefs['off'], base_series_loc)
-          off_score = score_series(new_series_pct, new_series_loc) - base_score
-          document.getElementById("player2_value").innerHTML = "When player is on the court, he increases his teammates' points per 100 shots by an estimated " + Math.round(off_score * 10000) / 100 + "."
+          // get score for known guard
+          var new_base_pct_series = get_base_shooter(202691, pct_coefs, base_series_pct)
+          var new_base_loc_series = get_base_shooter(202691, loc_coefs, base_series_loc)
+          var new_new_pct_series = get_base_shooter(202691, pct_coefs, new_series_pct)
+          var new_new_loc_series = get_base_shooter(202691, loc_coefs, new_series_loc)
+          off_score_guard = score_series(new_new_pct_series, new_new_loc_series) - score_series(new_base_pct_series, new_base_loc_series)
+          //console.log(score_series(new_base_pct_series, new_base_loc_series))
+          // get score for known forward
+          var new_base_pct_series = get_base_shooter(2544, pct_coefs, base_series_pct)
+          var new_base_loc_series = get_base_shooter(2544, loc_coefs, base_series_loc)
+          var new_new_pct_series = get_base_shooter(2544, pct_coefs, new_series_pct)
+          var new_new_loc_series = get_base_shooter(2544, loc_coefs, new_series_loc)
+          off_score_forward = score_series(new_new_pct_series, new_new_loc_series) - score_series(new_base_pct_series, new_base_loc_series)
+          // get score for known center
+          var new_base_pct_series = get_base_shooter(201599, pct_coefs, base_series_pct)
+          var new_base_loc_series = get_base_shooter(201599, loc_coefs, base_series_loc)
+          var new_new_pct_series = get_base_shooter(201599, pct_coefs, new_series_pct)
+          var new_new_loc_series = get_base_shooter(201599, loc_coefs, new_series_loc)
+          off_score_center = score_series(new_new_pct_series, new_new_loc_series) - score_series(new_base_pct_series, new_base_loc_series)
+          //console.log(score_series(new_series_pct, new_series_loc))
+
+          document.getElementById("player2_value").innerHTML = "When player is on the court, he increases his teammates' points per 100 shots by an estimated " + Math.round(off_score_guard * 10000) / 100 + " for guards, " + Math.round(off_score_forward * 10000) / 100 +  " for forwards, and " + Math.round(off_score_center * 10000) / 100 + " for centers."
           
         if (shoot_score != -1){
               var shooter = document.getElementById("locality-dropdown").value
-              new_series_pct = get_new_series(shoot_pct, shooter, pct_coefs['shoot'], new_series_pct)
-              new_series_loc = get_new_series(shoot_loc, shooter, loc_coefs['shoot'], new_series_loc)
+              new_series_pct = get_new_series(shoot_pct, shooter, pct_coefs['off'], new_series_pct)
+              new_series_loc = get_new_series(shoot_loc, shooter, loc_coefs['off'], new_series_loc)
               new_series_pct = adj_if_both_centers(shooter, this.value, new_series_pct, pct_coefs['off'])
               new_series_loc = adj_if_both_centers(shooter, this.value, new_series_loc, loc_coefs['off'])
-              var comb_score = score_series(new_series_pct, new_series_loc) - base_score
-              var synergy = comb_score - shoot_score - off_score
+              var comb_score = score_series(new_series_pct, new_series_loc) - shoot_base_score
+              //console.log(score_series(new_series_pct, new_series_loc))
+              var off_score_to_use = get_off_score_to_use(shooter)
+              var synergy = comb_score - shoot_score - off_score_to_use
               document.getElementById("synergy").innerHTML = "Synergy: " + Math.round(synergy * 10000) / 100
               document.getElementById("combined_value").innerHTML = "When player 1 is shooting with player 2 as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply linearly added their effects linearly."
           }
