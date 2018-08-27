@@ -80,9 +80,9 @@
     <script src='dropdown.js'></script>
     <script src='court.js'></script>
     <script type="text/javascript">
-        setTimeout(function(){
+        $.when(load_players()).then(function(){
           $(".chosen").chosen();
-      }, 2);
+      });
     </script>
      <script type="text/javascript">
         const width = 300;
