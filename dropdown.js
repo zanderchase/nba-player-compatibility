@@ -1,5 +1,5 @@
 function load_players() { 
-  
+  console.log('dropdown');
   let dropdown = document.getElementById('locality-dropdown');
   dropdown.length = 0;
   let dropdown2 = document.getElementById('locality-dropdown2');
