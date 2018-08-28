@@ -41,7 +41,6 @@ function load_players() {
         dropdown2.add(option2);
       }
       console.log('done');
-      return true;
       
      } else {
        console.log('fail');
@@ -53,6 +52,8 @@ function load_players() {
   request.onerror = function() {
     console.error('An error occurred fetching the JSON from ' + url);
   };
-
+  console.log('send');
   request.send();
+  console.log('end');
+  return true;
 }
