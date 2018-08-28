@@ -83,11 +83,14 @@
     
     <script src='dropdown.js'></script>
     <script src='court.js'></script>
+      
     <script type="text/javascript">
-        $.when(load_players()).then(function(){
-          $(".chosen").chosen();
-      });
+        if (load_players()) { 
+          function(){
+          $(".chosen").chosen();}
+        };
     </script>
+      
      <script type="text/javascript">
         const width = 300;
         const height = width/50*47;
