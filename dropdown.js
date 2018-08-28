@@ -40,6 +40,7 @@ function load_players() {
         option2.value = player_data[i].id;
         dropdown2.add(option2);
       }
+      console.log('done');
       return true;
       
      } else {
