@@ -150,7 +150,7 @@
               var off_score_to_use = get_off_score_to_use(this.value)
               var synergy = comb_score - shoot_score - off_score_to_use
               document.getElementById("synergy").innerHTML = "Synergy: " + Math.round(synergy * 10000) / 100
-              document.getElementById("combined_value").innerHTML = "When " + this.options[this.selectedIndex].text+ " is shooting with " + this_off.options[this_off.selectedIndex].text+ " as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player for his position. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply linearly added their effects linearly."
+              document.getElementById("combined_value").innerHTML = "When " + this.options[this.selectedIndex].text+ " is shooting with " + this_off.options[this_off.selectedIndex].text+ " as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player for his position. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply added their effects linearly."
           }
           
           
