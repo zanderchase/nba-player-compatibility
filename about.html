@@ -45,15 +45,76 @@
         <h2 class="text-center text-uppercase text-secondary mb-0">About</h2>
         <hr class="star-dark mb-5">
         <div class="row">
-          <div class="col-lg-4 ml-auto">
+          <div class="col-lg-5 ml-auto">
             <p class="lead">This works attempts to answer the question of how compatible two players are when they are on the court at the same time. For a more in depth explanation, see <a href=https://hwchase17.github.io/sports/>here</a></p>
           </div>
-          <div class="col-lg-4 mr-auto">
+          <div class="col-lg-5 mr-auto">
             <p class="lead">For all the code needed to reproduce (and improve on!) this analysis, see <a href=https://github.com/hwchase17/sports> https://github.com/hwchase17/sports</a>.</p>
           </div>
         </div>
       </div>
     </section>
+
+
+
+    <!-- About Section -->
+    <section class="bg-primary text-white mb-0" id="faq">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-white">FAQ</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+          <div class="col-lg-6 ml-auto">
+            <h4 class="question">What is this?</h4>
+            <p class="lead">Short answer: an attempt to model how compatible two players are. See <a class='darklink' href=https://hwchase17.github.io/sports> https://hwchase17.github.io/sports </a> for a longer answer.</p>
+
+            <h4 class="question">What season is this data for?</h4>
+            <p class="lead">2017-18 NBA season</p>
+
+            <h4 class="question">What is the target that you measuring?</h4>
+            <p class="lead">Points per shot (PPS). Notably, PPS does NOT attempt to account for things like turnovers and rebounds.</p>
+
+            <h4 class="question">How you estimate compatibility?</h4>
+            <p class="lead">Let’s walk through an example of estimating player A’s compatibility with player B. We first estimate PPS when player A is shooting with an average lineup on the court (call this estimate X). We then estimate PPS when player B is on the court (with an otherwise average lineup) and an average player of the same position as player A is shooting (call this estimate Y). Finally, we estimate the PPS when player A is shooting and player B is also on the court (call this estimate Z). The compatibility of two players is Z - (Y + X) / 2.</p>
+
+            <h4 class="question">What else is coming?</h4>
+            <p class="lead"> A few things. In order of priority:
+              <br> 1) Which players are most compatible with player A?
+              <br> 2) Which players are most similar with player B?
+              <br> 3) Estimates of value/compatibility that include turnovers/rebounds
+              <br> 4) More seasons worth of data
+              <br> 5) More robust estimation techniques
+            </p>
+
+            <h4 class="question">Your site is wrong and stupid.</h4>
+            <p class="lead">That’s not a question.</p>
+
+
+          </div>
+          <div class="col-lg-6 mr-auto">
+            <h4 class="question">I have this weird result! Why is this so?</h4>
+            <p class="lead">I don’t know exactly, but here’s how you can figure out!
+              <br> 1) Read the rest of the FAQ (might be answered)
+              <br> 2) Reach out to us (either twitter or email, both can be found on the Contact page) and ask
+              <br> 3) It is possible that that our estimates produce some counterintuitive(/wrong) results, that is definitely not out of the question!
+            </p>
+            <h4 class="question">Why do you not account for turnovers/rebounds? Will you in the future?</h4>
+            <p class="lead">Because the methods we would use there are not that novel and so aren’t as interesting. We do have plans to do so in the future.</p>
+
+            <h4 class="question">What is this ‘average lineup’?</h4>
+            <p class="lead">Two guards, two forwards, one center - all with skills of the average player at their position</p>
+
+            <h4 class="question">Why do you do everything relative to positional average?</h4>
+            <p class="lead">It presents more intuitive results. For example, centers have a very high PPS estimate (cause they usually get easier shots than guards). So if we didn’t account for position, all centers would look like offensive gods and all guards would look like scrubs. For the actual calculation of compatibility it is irrelevant.</p>
+
+            <h4 class="question">I want you guys to do {INSERT REASONABLE DEMAND HERE}! Can you do it?</h4>
+            <p class="lead">Maybe! If you reach out to us, ask nicely, and it seems like something there would be demand for.</p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
 
     <div class="copyright py-4 text-center text-white">
       <div class="container">
