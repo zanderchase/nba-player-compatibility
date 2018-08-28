@@ -385,3 +385,14 @@ a:focus, a:hover, a:active {
   background-color: #1a252f;
   border-color: #1a252f;
 }
+.question {
+  color: #2C3E50;
+}
+.darklink {
+  color: darkgrey;
+}
+.darklink:hover {
+  color: black;
+}
+
+
