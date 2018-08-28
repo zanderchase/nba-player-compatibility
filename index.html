@@ -84,9 +84,9 @@
     <script src='dropdown.js'></script>
     <script src='court.js'></script>
     <script type="text/javascript">
-        $.when(function(){
+        $.when(load_players()).then(function(){
           $(".chosen").chosen();
-      }).then(load_players());
+      });
     </script>
      <script type="text/javascript">
         const width = 300;
