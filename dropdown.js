@@ -54,4 +54,5 @@ function load_players() {
   };
 
   request.send();
+  return true;
 }
