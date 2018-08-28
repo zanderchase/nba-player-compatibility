@@ -40,8 +40,11 @@ function load_players() {
         option2.value = player_data[i].id;
         dropdown2.add(option2);
       }
+      return true;
+      
      } else {
        console.log('fail');
+       return false;
       // Reached the server, but it returned an error
     }   
   }
