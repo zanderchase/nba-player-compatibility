@@ -53,8 +53,8 @@
           <h2 class="text-center text-uppercase text-secondary mb-0">NBA Player Compatibility</h2>
           <hr class="star-dark mb-5">
         <br>
-        <div style="width: 100%;">
-           <div style="float:left; width: 50%">
+        <div class="row">
+           <div class="col-md-5 ml-auto">
              <h3>Shooting Player:</h3>
              <p>Please select the player who is shooting.</p>
              <select id="locality-dropdown" name="locality" class="chosen" style="width:300px;">
@@ -65,7 +65,7 @@
              <div id='player_1_court_shoot_pct'></div>
              <div id='player1_value'></div>
            </div>
-           <div style="float:right; position: absolute; left: 550px">
+           <div class="col-md-5 mr-auto">
              <h3>Offensive Teammate:</h3>
              <p>Please select an offensive teammate.</p>
              <select id="locality-dropdown2" name="locality" class="chosen" style="width:300px;">
@@ -85,8 +85,8 @@
     </section>
     
     <script src='dropdown.js'></script>
-      <script src='court.js'></script> 
-     <script type="text/javascript">
+    <script src='court.js'></script> 
+    <script type="text/javascript">
         const width = 300;
         const height = width/50*47;
         const margin = { left: 5, right: 5, top: 5, bottom: 5 };
