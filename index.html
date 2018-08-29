@@ -54,7 +54,7 @@
           <hr class="star-dark mb-5">
         <br>
         <div class="row">
-           <div class="col-md-6 ml-auto">
+           <div class="col-md-5 ml-auto">
              <h3>Shooting Player:</h3>
              <p>Please select the player who is shooting.</p>
              <select id="locality-dropdown" name="locality" class="chosen" style="width:300px;">
@@ -65,7 +65,7 @@
              <div id='player_1_court_shoot_pct'></div>
              <div id='player1_value'></div>
            </div>
-           <div class="col-md-6 mr-auto">
+           <div class="col-md-5 mr-auto">
              <h3>Offensive Teammate:</h3>
              <p>Please select an offensive teammate.</p>
              <select id="locality-dropdown2" name="locality" class="chosen" style="width:300px;">
@@ -155,12 +155,12 @@
 
           get_base_score()
 
-          document.getElementById("player_2_off_header2").innerHTML = "Effect on Teammates' Shooting Ability"
+          document.getElementById("player_2_off_header2").innerHTML = "Effect on Teammates'"
           off_pct = get_weights('pct', 'off', this.value)
           var colors = get_colors(off_pct, 'pct')
           draw_court('player_2_court_off_pct', colors);
 
-          document.getElementById("player_2_off_header").innerHTML = "Effect on Teammates' Shooting Tendencies"
+          document.getElementById("player_2_off_header").innerHTML = "Effect on Teammates'"
           off_loc = get_weights('loc', 'off', this.value)
           var colors = get_colors(off_loc, 'loc')
           draw_court('player_2_court_off_loc', colors);
