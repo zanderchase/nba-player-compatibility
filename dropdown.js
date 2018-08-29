@@ -40,7 +40,10 @@ function load_players() {
         option2.value = player_data[i].id;
         dropdown2.add(option2);
       }
-      console.log('donezo');
+      console.log('donezos');
+      (function() {  
+            $(".chosen").chosen();
+          })();
       return true;
      } else {
        console.log('fail');
