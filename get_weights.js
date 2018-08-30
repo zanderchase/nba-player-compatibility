@@ -16,17 +16,6 @@ function get_weights(pct_or_loc, type, player){
 }
 
 function get_colors(coefs, pct_or_loc){
-    if(coefs == {}) {
-	return {
-              'Above the Break 3': '#FFF',
-              'Backcourt': '#FFF',
-              'In The Paint (Non-RA)': '#FFF',
-              'Left Corner 3': '#FFF',
-              'Mid-Range': '#FFF',
-              'Restricted Area': '#FFF',
-              'Right Corner 3': '#FFF'
-            }
-    }
     var colors = {}
     var max = .5
     if (pct_or_loc === 'pct'){
