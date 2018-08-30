@@ -394,14 +394,14 @@ a:focus, a:hover, a:active {
 .darklink:hover {
   color: black;
 }
-.saccuracy {
+.sfrequency {
   position: relative;
   top: 140px;
   right:30px
 }
-.sfrequency {
+.saccuracy {
   position: relative;
-  top: 200px;
+  top: 170px;
   right: 10px;
 }
 
