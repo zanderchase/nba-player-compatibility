@@ -396,11 +396,12 @@ a:focus, a:hover, a:active {
 }
 .saccuracy {
   position: relative;
-  top: 130px;
+  top: 140px;
+  right:30px
 }
 .sfrequency {
   position: relative;
-  top: 160px;
-  left: 20px;
+  top: 200px;
+  right: 10px;
 }
 
