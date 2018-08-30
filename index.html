@@ -46,7 +46,7 @@
         </div>
       </div>
     </nav>
-    
+
     <!-- Home Section -->
     <section class="portfolio" id="home">
 
@@ -88,11 +88,12 @@
         </div>
         <div style="clear:both"></div>
         <div style="width: 100%; border: 25px solid green;padding: 25px;margin: 25px;">
-        <h4 id='synergy'></h4>
+        <h4>Analysis:</h4>
+        <h3 id='synergy'></h3>
         <div id='combined_value'></div>
       </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="footer text-center">
           <div class="col-sm-12 row align-items-center justify-content-center">
@@ -103,10 +104,22 @@
               </li>
           </div>
     </footer>
-      
+
     <script src='dropdown.js'></script>
-    <script src='court.js'></script> 
+    <script src='court.js'></script>
     <script type="text/javascript">
+        document.getElementById("player_1_shoot_header").innerHTML = "Shooting Tendencies"
+        document.getElementById("player_1_shoot_header2").innerHTML = "Shooting Ability"
+        document.getElementById("player_2_off_header2").innerHTML = "Effect on Teammates'"
+        document.getElementById("player_2_off_header").innerHTML = "Effect on Teammates'"
+        var chartDiv = document.getElementById('locality-dropdown');
+        var court = d3.select(chartDiv).append('court').append('svg');
+        court.attr('width', 480)
+             .attr('height', 480/50*47)
+
+        court.append('table');
+        var court_g = court.append('g');
+
         const width = 300;
         const height = width/50*47;
         const margin = { left: 5, right: 5, top: 5, bottom: 5 };
@@ -118,7 +131,6 @@
                                      .domain([-250, 250]);
         const shot_yScale = d3.scaleLinear()
                                      .domain([-45,420])
-
         var base_score = -1
         var base_series_pct = {}
         var base_series_loc = {}
@@ -132,15 +144,26 @@
         var off_loc = {}
         var shoot_base_score = -1
 
+        add_court_component();
+        var colors = {
+              'Above the Break 3': '#FFF',
+              'Backcourt': '#FFF',
+              'In The Paint (Non-RA)': '#FFF',
+              'Left Corner 3': '#FFF',
+              'Mid-Range': '#FFF',
+              'Restricted Area': '#FFF',
+              'Right Corner 3': '#FFF'
+            }
+        draw_court('player_1_court_shoot_loc', colors);
+        draw_court('player_1_court_shoot_pct', colors);
+        draw_court('player_2_court_off_pct', colors);
+        draw_court('player_2_court_off_loc', colors);
+
         document.getElementById("locality-dropdown").onchange = function(){
           get_base_score()
-
-          document.getElementById("player_1_shoot_header2").innerHTML = "Shooting Ability"
           shoot_pct = get_weights('pct', 'shoot', this.value)
           var colors = get_colors(shoot_pct, 'pct')
           draw_court('player_1_court_shoot_pct', colors);
-
-          document.getElementById("player_1_shoot_header").innerHTML = "Shooting Tendencies"
           shoot_loc = get_weights('loc', 'shoot', this.value)
           var colors = get_colors(shoot_loc, 'loc')
           draw_court('player_1_court_shoot_loc', colors);
@@ -153,7 +176,6 @@
           //console.log(score_series(new_series_pct, new_series_loc))
           //shoot_score = score_series(new_series_pct, new_series_loc) - base_score
           document.getElementById("player1_value").innerHTML = "When shooting, " + this.options[this.selectedIndex].text + "'s estimated points per 100 shots is " + Math.round(shoot_score * 10000) / 100 + " better than the average player for his position."
-
           if (off_score_guard != -1){
               var this_off = document.getElementById("locality-dropdown2")
               var off = this_off.value
@@ -168,23 +190,17 @@
               document.getElementById("synergy").innerHTML = "Synergy: " + Math.round(synergy * 10000) / 100
               document.getElementById("combined_value").innerHTML = "When " + this.options[this.selectedIndex].text+ " is shooting with " + this_off.options[this_off.selectedIndex].text+ " as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player for his position. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply added their effects linearly."
           }
-          
-          
+
+
         }
         document.getElementById("locality-dropdown2").onchange = function(){
-
           get_base_score()
-
-          document.getElementById("player_2_off_header2").innerHTML = "Effect on Teammates'"
           off_pct = get_weights('pct', 'off', this.value)
           var colors = get_colors(off_pct, 'pct')
           draw_court('player_2_court_off_pct', colors);
-
-          document.getElementById("player_2_off_header").innerHTML = "Effect on Teammates'"
           off_loc = get_weights('loc', 'off', this.value)
           var colors = get_colors(off_loc, 'loc')
           draw_court('player_2_court_off_loc', colors);
-
           var new_series_pct = get_new_series(off_pct, this.value, pct_coefs['off'], base_series_pct)
           var new_series_loc = get_new_series(off_loc, this.value, loc_coefs['off'], base_series_loc)
           // get score for known guard
@@ -207,9 +223,8 @@
           var new_new_loc_series = get_base_shooter(201599, loc_coefs, new_series_loc)
           off_score_center = score_series(new_new_pct_series, new_new_loc_series) - score_series(new_base_pct_series, new_base_loc_series)
           //console.log(score_series(new_series_pct, new_series_loc))
-
           document.getElementById("player2_value").innerHTML = "When " +this.options[this.selectedIndex].text + " is on the court, he increases his teammates' points per 100 shots by an estimated " + Math.round(off_score_guard * 10000) / 100 + " for guards, " + Math.round(off_score_forward * 10000) / 100 +  " for forwards, and " + Math.round(off_score_center * 10000) / 100 + " for centers."
-          
+
         if (shoot_score != -1){
               var this_shooter = document.getElementById("locality-dropdown")
               var shooter = this_shooter.value
