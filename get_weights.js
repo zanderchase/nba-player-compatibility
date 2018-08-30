@@ -16,6 +16,7 @@ function get_weights(pct_or_loc, type, player){
 }
 
 function get_colors(coefs, pct_or_loc){
+    console.log(coefs);
     var colors = {}
     var max = .5
     if (pct_or_loc === 'pct'){
