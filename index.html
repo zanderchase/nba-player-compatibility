@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script src='https://d3js.org/d3.v4.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="choosen.js"></script>
     <script src='get_weights.js'></script>
     <script src='load_data.js'></script>
@@ -16,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
- </head>
+  </head>
   <body id="page-top">
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
@@ -114,10 +115,8 @@
         var court = d3.select(chartDiv).append('court').append('svg');
         court.attr('width', 480)
              .attr('height', 480/50*47)
-
         court.append('table');
         var court_g = court.append('g');
-
         const width = 300;
         const height = width/50*47;
         const margin = { left: 5, right: 5, top: 5, bottom: 5 };
@@ -141,7 +140,6 @@
         var off_pct = {}
         var off_loc = {}
         var shoot_base_score = -1
-
         add_court_component();
         var colors = {
               'Above the Break 3': '#FFF',
@@ -156,7 +154,6 @@
         draw_court('player_1_court_shoot_pct', colors);
         draw_court('player_2_court_off_pct', colors);
         draw_court('player_2_court_off_loc', colors);
-
         document.getElementById("locality-dropdown").onchange = function(){
           get_base_score()
           shoot_pct = get_weights('pct', 'shoot', this.value)
@@ -188,8 +185,6 @@
               document.getElementById("synergy").innerHTML = "Synergy: " + Math.round(synergy * 10000) / 100
               document.getElementById("combined_value").innerHTML = "When " + this.options[this.selectedIndex].text+ " is shooting with " + this_off.options[this_off.selectedIndex].text+ " as his teammate, his estimated points per 100 shots is " + Math.round(comb_score * 10000) / 100 + " better than the average player for his position. This is " + Math.round(synergy * 10000) / 100 + " better than we would have estimated if we simply added their effects linearly."
           }
-
-
         }
         document.getElementById("locality-dropdown2").onchange = function(){
           get_base_score()
@@ -222,7 +217,6 @@
           off_score_center = score_series(new_new_pct_series, new_new_loc_series) - score_series(new_base_pct_series, new_base_loc_series)
           //console.log(score_series(new_series_pct, new_series_loc))
           document.getElementById("player2_value").innerHTML = "When " +this.options[this.selectedIndex].text + " is on the court, he increases his teammates' points per 100 shots by an estimated " + Math.round(off_score_guard * 10000) / 100 + " for guards, " + Math.round(off_score_forward * 10000) / 100 +  " for forwards, and " + Math.round(off_score_center * 10000) / 100 + " for centers."
-
         if (shoot_score != -1){
               var this_shooter = document.getElementById("locality-dropdown")
               var shooter = this_shooter.value
